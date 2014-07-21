@@ -1,6 +1,26 @@
 angular.module('myApp',[])
-	.controller('MultiplicationCtrl',['$scope',function($scope){
+	.controller('MultiplicationCtrl',function($scope, $attrs){
 
-		$scope.numbers=[1,2,3,4,5,6,7,8,9,10];
+		function populateNumbers(upperLimit){
 
-	}]);
+			var numbers = [];
+
+			for( var i = 1; i <= upperLimit; i++ ){
+
+				numbers.push(i);
+
+			}
+
+			return numbers;
+
+		}
+
+		$scope.numberLimit = $attrs.initialNumberLimit || 10;
+
+		$scope.numbers = populateNumbers($scope.numberLimit);
+
+		$scope.compute = function(a,b){
+			return a * b;
+		}
+
+	});
